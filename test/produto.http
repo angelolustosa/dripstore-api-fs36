@@ -1,1 +1,36 @@
-GET  http://127.0.0.1:3000/
+### Obter todos os produtos
+GET http://localhost:3000/api/produtos
+Content-Type: application/json
+
+### Obter um produto por ID
+GET http://localhost:3000/api/produtos/1
+Content-Type: application/json
+
+### Criar um novo produto### Criar um novo produto
+POST http://localhost:3000/api/produtos
+Content-Type: application/json
+
+{
+  "nome": "Nike",
+  "descricao": "Grand Court",
+  "avaliacao": 4.5,
+  "tamanho": 42,
+  "cor": "Preto",
+  "preco": 209.90,
+  "idCategoria": 1
+}
+
+
+### Atualizar um produto por ID
+PUT http://localhost:3000/api/produtos/1
+Content-Type: application/json
+
+{
+  "nome": "Produto Atualizado",
+  "preco": 129.90,
+  "categoriaId": 2
+}
+
+### Deletar um produto por ID
+DELETE http://localhost:3000/api/produtos/1
+Content-Type: application/json

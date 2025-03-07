@@ -1,0 +1,13 @@
+GET http://127.0.0.1:3000/api/categorias
+Content-Type: application/json
+
+###
+
+POST http://127.0.0.1:3000/api/categorias
+Content-Type: application/json
+
+{ 
+    "codigo": 1, 
+    "nome": "Tênis", 
+    "descricao": "Produtos relacionados à calçados"
+}
