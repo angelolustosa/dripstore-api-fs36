@@ -6,7 +6,7 @@ console.log('variaveis'); */
 
 const sequelize = new Sequelize(`postgresql://${config.username}:${config.password}@${config.host}/${config.database}?sslmode=require`) // Example for postgres
 
-// Função assíncrona para conectar ao banco
+/* // Função assíncrona para conectar ao banco
 const conectarBanco = async () => {
     try {
       await sequelize.authenticate();
@@ -16,8 +16,8 @@ const conectarBanco = async () => {
     }
   };
 
-  conectarBanco();
+  conectarBanco();*/
 
-  export default sequelize;
+  export default sequelize; 
 
   

@@ -21,7 +21,8 @@ const Categoria = sequelize.define('Categoria', {
     allowNull: false
   }
 }, {
-  tableName: 'categorias', // Nome da tabela no banco
+  modelName: 'Categoria',
+  tableName: 'categorias', // Certifique-se de que o nome da tabela está correto
   timestamps: true // Define se quer usar createdAt e updatedAt
 });
 

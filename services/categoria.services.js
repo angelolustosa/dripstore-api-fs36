@@ -77,7 +77,7 @@ const categoriaService = {
   }
 };
 
-const insertCategories = async () => {
+export const insertCategories = async () => {
   try {
     const categories = [
       { codigo: 1, nome: 'Eletrônicos', descricao: 'Produtos eletrônicos como celulares, computadores e gadgets.' },
@@ -92,18 +92,20 @@ const insertCategories = async () => {
       { codigo: 10, nome: 'Jardinagem', descricao: 'Produtos para jardinagem e cuidado de plantas.' }
     ];
 
-    const result = await Categoria.bulkCreate(categories, {
-      validate: true // Optional: to validate before insertion
-    });
-
-    console.log('Categories inserted successfully', result);
-    Categoria.f
+    // Verifica se as categorias já existem antes de tentar inseri-las
+    for (let category of categories) {
+      const existingCategory = await Categoria.findOne({ where: { codigo: category.codigo } });
+      if (!existingCategory) {
+        // Se a categoria não existe, insere no banco de dados
+        await Categoria.create(category);
+        console.log(`Categoria '${category.nome}' inserida com sucesso.`);
+      } else {
+        console.log(`Categoria '${category.nome}' já existe. Ignorando inserção.`);
+      }
+    }
   } catch (error) {
-    console.error('Error inserting categories:', error);
+    console.error('Erro ao inserir categorias:', error);
   }
 }
-
-// Call the function to insert categories
-insertCategories();
 
 export default categoriaService;
