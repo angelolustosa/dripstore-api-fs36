@@ -1,11 +1,11 @@
 import express from 'express';
-import categoriaService from '../services/categoria.services.js';
+import { categoriaService } from '../services/categoria.services.js';
 
 const router = express.Router();
 
 export const categoriaController = (app) => {
 
-    router.get('/categorias', categoriaService.banana)       // Buscar todos os categorias
+    router.get('/categorias', categoriaService.getAll)       // Buscar todos os categorias
         .get('/categorias/:id', categoriaService.getById) // Buscar um categoria por ID
         .post('/categorias', categoriaService.create)     // Criar um categoria
         .put('/categorias/:id', categoriaService.update)  // Atualizar um categoria

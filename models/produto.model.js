@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
-//import Categoria from './categoria.model.js';
 import sequelize from '../db/index.js';
+import Categoria from './categoria.model.js';  // Importando o modelo de Categoria
 
 const Produto = sequelize.define('Produto', {
   id: {
@@ -33,20 +33,21 @@ const Produto = sequelize.define('Produto', {
     type: Sequelize.DECIMAL(10, 2),
     allowNull: false
   },
-  /* categoriaId: {
+  idCategoria: {  // A chave estrangeira para associar com Categoria
     type: Sequelize.INTEGER,
     references: {
       model: Categoria, // Relacionamento com a tabela Categoria
       key: 'id'
-    }
-  } */
+    },
+    allowNull: false
+  }
 }, {
   tableName: 'produto',
-  //timestamps: false
+  timestamps: false
 });
 
-// Definir o relacionamento
-/* Produto.belongsTo(Categoria, { foreignKey: 'categoriaId' });
-Categoria.hasMany(Produto, { foreignKey: 'categoriaId' }); */
+// Definindo o relacionamento
+Produto.belongsTo(Categoria, { foreignKey: 'categoriaId' });  // Relacionamento Produto -> Categoria
+Categoria.hasOne(Produto, { foreignKey: 'categoriaId' });  // Relacionamento Categoria -> Produto
 
 export default Produto;
