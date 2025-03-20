@@ -8,13 +8,23 @@ const Categoria = sequelize.define('Categoria', {
     primaryKey: true,
     allowNull: false
   },
+  codigo: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
   nome: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  descricao: {
     type: Sequelize.STRING,
     allowNull: false
   }
 }, {
-  tableName: 'categorias', // Nome da tabela no banco
-  timestamps: false // Define se quer usar createdAt e updatedAt
+  modelName: 'Categoria',
+  tableName: 'categorias', // Certifique-se de que o nome da tabela está correto
+  timestamps: true // Define se quer usar createdAt e updatedAt
 });
+
 
 export default Categoria;

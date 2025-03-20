@@ -8,6 +8,7 @@ export const produtoService = {
       const produtos = await Produto.findAll({
         include: {
           model: Categoria,
+          as: 'categoria', // Adiciona o alias correto
           attributes: ['id', 'nome'], // Você pode escolher os campos que deseja retornar
         },
       });
@@ -42,15 +43,16 @@ export const produtoService = {
   // Método para criar um novo produto com a categoria associada
   async create(req, res) {
     try {
-      const { nome, preco, categoriaId } = req.body;
+      const { nome, descricao, avaliacao, tamanho, cor, preco, idCategoria } = req.body;
 
       // Verifica se a categoria existe antes de criar o produto
       const categoria = await Categoria.findByPk(categoriaId);
+      
       if (!categoria) {
         return res.status(404).json({ mensagem: 'Categoria não encontrada' });
       }
 
-      const novoProduto = await Produto.create({ nome, preco, categoriaId });
+      const novoProduto = await Produto.create({ nome, descricao, avaliacao, tamanho, cor, preco, idCategoria });
       res.status(201).json(novoProduto);
     } catch (error) {
       console.error('[ERRO]:', error);

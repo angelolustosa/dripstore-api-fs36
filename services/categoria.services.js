@@ -5,9 +5,12 @@ export const categoriaService = {
   async getAll(req, res) {
     try {
       const categorias = await Categoria.findAll();
-      res.status(200).json(categorias);
+      res.status(200).json({
+        size: categorias?.length,
+        data: categorias,
+      });
     } catch (error) {
-      console.error('[ERRO]:', error);
+      console.error("[ERRO]:", error);
       res.status(500).json({ mensagem: `Erro ao buscar categorias: ${error}` });
     }
   },
@@ -18,32 +21,27 @@ export const categoriaService = {
       const { id } = req.params;
       const categoria = await Categoria.findByPk(id);
       if (!categoria) {
-        return res.status(404).json({ mensagem: 'Categoria não encontrada' });
+        return res.status(404).json({ mensagem: "Categoria não encontrada" });
       }
       res.status(200).json(categoria);
     } catch (error) {
-      console.error('[ERRO]:', error);
-      res.status(500).json({ mensagem: 'Erro ao buscar categoria' });
+      console.error("[ERRO]:", error);
+      res.status(500).json({ mensagem: "Erro ao buscar categoria" });
     }
   },
 
   // Método para criar uma nova categoria
   async create(req, res) {
-    try {
-      const { nome } = req.body;
-      
-      // Verifica se a categoria já existe
-      const categoriaExistente = await Categoria.findOne({ where: { nome } });
-      if (categoriaExistente) {
-        return res.status(400).json({ mensagem: 'Categoria já existe' });
-      }
+    const { nome } = req.body;
 
-      const novaCategoria = await Categoria.create({ nome });
-      res.status(201).json(novaCategoria);
-    } catch (error) {
-      console.error('[ERRO]:', error);
-      res.status(500).json({ mensagem: 'Erro ao criar categoria' });
+    // Verifica se a categoria já existe
+    const categoriaExistente = await Categoria.findOne({ where: { nome } });
+    if (categoriaExistente) {
+      return res.status(400).json({ mensagem: "Categoria já existe" });
     }
+
+    const novaCategoria = await Categoria.create({ nome });
+    res.status(201).json(novaCategoria);
   },
 
   // Método para atualizar uma categoria
@@ -54,14 +52,14 @@ export const categoriaService = {
 
       const categoria = await Categoria.findByPk(id);
       if (!categoria) {
-        return res.status(404).json({ mensagem: 'Categoria não encontrada' });
+        return res.status(404).json({ mensagem: "Categoria não encontrada" });
       }
 
       await categoria.update({ nome });
       res.status(200).json(categoria);
     } catch (error) {
-      console.error('[ERRO]:', error);
-      res.status(500).json({ mensagem: 'Erro ao atualizar categoria' });
+      console.error("[ERRO]:", error);
+      res.status(500).json({ mensagem: "Erro ao atualizar categoria" });
     }
   },
 
@@ -72,14 +70,14 @@ export const categoriaService = {
       const categoria = await Categoria.findByPk(id);
 
       if (!categoria) {
-        return res.status(404).json({ mensagem: 'Categoria não encontrada' });
+        return res.status(404).json({ mensagem: "Categoria não encontrada" });
       }
 
       await categoria.destroy();
       res.status(204).send();
     } catch (error) {
-      console.error('[ERRO]:', error);
-      res.status(500).json({ mensagem: 'Erro ao excluir categoria' });
+      console.error("[ERRO]:", error);
+      res.status(500).json({ mensagem: "Erro ao excluir categoria" });
     }
-  }
+  },
 };
