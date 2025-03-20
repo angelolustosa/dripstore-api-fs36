@@ -46,7 +46,7 @@ export const produtoService = {
       const { nome, descricao, avaliacao, tamanho, cor, preco, idCategoria } = req.body;
 
       // Verifica se a categoria existe antes de criar o produto
-      const categoria = await Categoria.findByPk(categoriaId);
+      const categoria = await Categoria.findByPk(idCategoria);
       
       if (!categoria) {
         return res.status(404).json({ mensagem: 'Categoria não encontrada' });

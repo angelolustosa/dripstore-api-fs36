@@ -1,40 +1,59 @@
-import { Sequelize } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import sequelize from '../db/index.js';
 import Categoria from './categoria.model.js';
 
 const Produto = sequelize.define('Produto', {
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false
   },
   nome: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   descricao: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   avaliacao: {
-    type: Sequelize.DECIMAL(10, 2),
-    allowNull: false
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
+    validate: {
+      min: 0,
+      max: 5
+    }
   },
   tamanho: {
-    type: Sequelize.INTEGER,
-    allowNull: false
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      min: 0
+    }
   },
   cor: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   preco: {
-    type: Sequelize.DECIMAL(10, 2),
-    allowNull: false
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
+    validate: {
+      min: 0
+    }
   },
   idCategoria: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     references: {
       model: Categoria, // Relacionamento com a tabela Categoria
       key: 'id'
@@ -42,7 +61,15 @@ const Produto = sequelize.define('Produto', {
   }
 }, {
   tableName: 'produto',
-  timestamps: false
+  timestamps: false,
+  hooks: {
+    beforeCreate: (produto, options) => {
+      // Validações adicionais antes de criar um produto
+    },
+    beforeUpdate: (produto, options) => {
+      // Validações adicionais antes de atualizar um produto
+    }
+  }
 });
 
 // Definir o relacionamento
