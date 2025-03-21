@@ -1,5 +1,4 @@
 import { Sequelize } from 'sequelize';
-//import Categoria from './categoria.model.js';
 import sequelize from '../db/index.js';
 import Categoria from './categoria.model.js';
 
