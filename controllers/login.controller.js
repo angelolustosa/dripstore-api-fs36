@@ -6,10 +6,10 @@ const router = express.Router();
 
 export const loginController = (app) => {
   router
-    .get("/cadastrar", [ verificarCadastro.verificarDuplicadadeNomeOrCpfOrEmail, verificarCadastro.verificaSePapelExiste ], loginService.cadastrar)
-    .get("/login", loginService.login);
+    .post("/cadastrar", [ verificarCadastro.verificarDuplicadadeNomeOrCpfOrEmail, verificarCadastro.verificaSePapelExiste ], loginService.cadastrar)
+    .post("/login", loginService.login);
 
-  app.use("/auth", router);
+  app.use("/api/auth", router);
 };
 
 export default router;

@@ -3,7 +3,7 @@ import { usuarioService } from '../services/usuario.service.js';
 
 const router = express.Router();
 
-export const produtoController = app => {
+export const usuarioController = app => {
 
     router.get('/', usuarioService.getAll)       // Buscar todos os produtos
         .get('/:id', usuarioService.getById) // Buscar um produto por ID

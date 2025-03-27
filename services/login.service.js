@@ -17,8 +17,8 @@ export const loginService = {
         senha: senhaEncriptada,
       });
   
-      const papel = await Papel.findOne({ where: { name: "Usuário" } });
-      await usuario.setPapeis([papel]);
+      const papel = await Papel.findOne({ where: { nome: "Usuário" } });
+      await usuario.setPapel([papel]); //set[alias no model do relacionamento]
   
       res.status(201).json({ message: "Usuário cadastrado com Sucesso!" });
     } catch (error) {

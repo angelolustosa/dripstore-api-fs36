@@ -3,7 +3,7 @@ import Papel from '../models/papel.model.js';
 import { insertCategories } from '../services/categoria.services.js';
 import sequelize from './index.js';
 
-export const PAPEIS = ["Usuário", "Adminstrador", "Moderador"];
+export const PAPEIS = ["Usuário", "Administrador", "Moderador"];
 
 // Função de inicialização do banco de dados
 export const iniciarBanco = async () => {

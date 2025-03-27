@@ -1,3 +1,4 @@
+import { PAPEIS } from "../db/sync.js";
 import Usuario from "../models/usuario.model.js";
 
 const verificarDuplicadadeNomeOrCpfOrEmail = async (req, res, next) => {
@@ -41,9 +42,13 @@ const verificaSePapelExiste = (req, res, next) => {
       if (!PAPEIS.includes(papel)) {
         return res
           .status(400)
-          .json({ message: `ERRO! Papel não existe: ${role}` });
+          .json({ message: `Papel não existe: ${papel}` });
       }
     }
+  } else {
+    return res
+    .status(400)
+    .json({ message: `Papéis não informados!` });
   }
   next();
 };

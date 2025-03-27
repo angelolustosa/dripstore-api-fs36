@@ -44,16 +44,20 @@ const Usuario = sequelize.define('Usuario', {
   senha: {
     type: DataTypes.STRING,
     allowNull: false,
-    validate: {
-      len: { args: [6, 10], msg: 'A senha deve ter entre 6 e 10 caracteres' }
-    }
+    /* validate: {
+      len: { args: [6, 10], msg: 'A senha deve ter entre 6 e 10 caracteres' },
+      is: {
+        args: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,10}$/,
+        msg: 'A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um caractere especial'
+      }
+    } */
   }
 }, {
   tableName: 'usuario',
   timestamps: true
 });
 
-Papel.belongsToMany(Usuario, { through: "usaurio_papel" });
+Papel.belongsToMany(Usuario, { through: "usuario_papel" });
 Usuario.belongsToMany(Papel, { through: "usuario_papel", as: "papel" });
 
 export default Usuario;
