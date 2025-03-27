@@ -5,14 +5,14 @@ const router = express.Router();
 
 export const categoriaController = (app) => {
 
-    router.get('/categorias', categoriaService.getAll)       // Buscar todos os categorias
-        .get('/categorias/:id', categoriaService.getById) // Buscar um categoria por ID
-        .post('/categorias', categoriaService.create)     // Criar um categoria
-        .put('/categorias/:id', categoriaService.update)  // Atualizar um categoria
-        .delete('/categorias/:id', categoriaService.delete); // Excluir um categoria
+    router.get('/', categoriaService.getAll)       // Buscar todos os categorias
+        .get('/:id', categoriaService.getById) // Buscar um categoria por ID
+        .post('/', categoriaService.create)     // Criar um categoria
+        .put('/:id', categoriaService.update)  // Atualizar um categoria
+        .delete('/:id', categoriaService.delete); // Excluir um categoria
 
     // Prefixo global "/api/categorias" para todas as rotas de categorias
-    app.use('/api', router);
+    app.use('/api/categorias', router);
 }
 
 export default router;

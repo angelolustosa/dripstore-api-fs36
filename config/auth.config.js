@@ -1,0 +1,3 @@
+export default {
+    secret: '7bcc82a2388b091881037424a2c61a9fa919a25795606c47453c20581c9aa903'
+  };

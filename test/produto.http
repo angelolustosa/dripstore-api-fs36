@@ -11,13 +11,13 @@ POST http://localhost:3000/api/produtos
 Content-Type: application/json
 
 {
-  "nome": "Nike",
-  "descricao": "Grand Court",
-  "avaliacao": 4.5,
-  "tamanho": 42,
-  "cor": "Preto",
-  "preco": 209.90,
-  "idCategoria": 1
+  "nome": "Adidads",
+  "descricao": "Grand Court 2.0",
+  "avaliacao": 5.0,
+  "tamanho": 43,
+  "cor": "Branco",
+  "preco": 259.52,
+  "idCategoria": 5
 }
 
 
