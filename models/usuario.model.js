@@ -34,13 +34,6 @@ const Usuario = sequelize.define('Usuario', {
       isEmail: { msg: 'O e-mail deve ser válido' }
     }
   },
-  /* telefone: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: { msg: 'O telefone é obrigatório' }
-    }
-  }, */
   senha: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -51,13 +44,21 @@ const Usuario = sequelize.define('Usuario', {
         msg: 'A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um caractere especial'
       }
     } */
-  }
+  },
+    /* telefone: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: { msg: 'O telefone é obrigatório' }
+    }
+  }, */
 }, {
   tableName: 'usuario',
   timestamps: true
 });
 
-Papel.belongsToMany(Usuario, { through: "usuario_papel" });
+//Relacionamento muitos para muitos de papel e usuario, criando a tabela usuario_papel
 Usuario.belongsToMany(Papel, { through: "usuario_papel", as: "papel" });
+Papel.belongsToMany(Usuario, { through: "usuario_papel" });
 
 export default Usuario;

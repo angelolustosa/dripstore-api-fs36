@@ -1,8 +1,8 @@
 import Categoria from '../models/categoria.model.js';
 import Papel from '../models/papel.model.js';
 import { insertCategories } from '../services/categoria.services.js';
-import sequelize from './index.js';
 
+import sequelize from './index.js';
 export const PAPEIS = ["Usuário", "Administrador", "Moderador"];
 
 // Função de inicialização do banco de dados
@@ -13,7 +13,7 @@ export const iniciarBanco = async () => {
     console.log('[OK] ✅ Conexão com o Banco de Dados estabelecida com sucesso');
 
     // Sincroniza as tabelas com o banco de dados (alterando, sem perder dados)
-    await sequelize.sync({ force: true, alter: false }); // ⚠️ Isso apaga e recria as tabelas! Use alter: true para atualizar sem perder dados
+    await sequelize.sync({ force: true, alter: true }); // ⚠️ Isso apaga e recria as tabelas! Use alter: true para atualizar sem perder dados
     console.log('✅ Banco de dados sincronizado!');
 
     // Verifica se a tabela de categorias tem dados, se não tiver, insere as categorias

@@ -19,7 +19,7 @@ const Papel = sequelize.define('Papel', {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      notEmpty: { msg: 'O nome é obrigatório' },
+      notEmpty: { msg: 'O código é obrigatório' },
       //len: { args: [5, 5], msg: 'O código deve ter exatamente 5 caracteres' }
     }
   }

@@ -95,14 +95,14 @@ export const insertCategories = async () => {
     ];
 
     // Verifica se as categorias já existem antes de tentar inseri-las
-    for (let category of categories) {
-      const existingCategory = await Categoria.findOne({ where: { codigo: category.codigo } });
-      if (!existingCategory) {
+    for (let categoria of categories) {
+      const categoriaExiste = await Categoria.findOne({ where: { codigo: categoria.codigo } });
+      if (!categoriaExiste) {
         // Se a categoria não existe, insere no banco de dados
-        await Categoria.create(category);
-        console.log(`Categoria '${category.nome}' inserida com sucesso.`);
+        await Categoria.create(categoria);
+        console.log(`Categoria '${categoria.nome}' inserida com sucesso.`);
       } else {
-        console.log(`Categoria '${category.nome}' já existe. Ignorando inserção.`);
+        console.log(`Categoria '${categoria.nome}' já existe. Ignorando inserção.`);
       }
     }
   } catch (error) {
